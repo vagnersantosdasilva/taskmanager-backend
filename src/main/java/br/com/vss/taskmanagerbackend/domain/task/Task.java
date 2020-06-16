@@ -19,6 +19,7 @@ public class Task {
     @JoinColumn(name="app_user_id")
     private AppUser appUser;
 
+
     public Task(){}
 
     public Task(String description, LocalDate whenToDO, Boolean done) {
