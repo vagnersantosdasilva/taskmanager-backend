@@ -1,8 +1,12 @@
 package br.com.vss.taskmanagerbackend.domain.task;
 
 import br.com.vss.taskmanagerbackend.domain.user.AppUser;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -11,12 +15,20 @@ public class Task {
     @Id
     @GeneratedValue
     private Integer id;
+
+    @NotEmpty(message = "A descrição é obrigatória")
+    @Length(min=3,max=40,message = "O tamanho da tarefa é inválido")
     private String description;
+
+    @NotNull(message="A data da tarefa é obrigatória")
+    @FutureOrPresent(message="A data da tarefa não pode ser no passado")
     private LocalDate whenToDO;
+
     private Boolean done =false;
 
     @ManyToOne
     @JoinColumn(name="app_user_id")
+    @NotNull(message ="O usuário da tarefa é obrigatório")
     private AppUser appUser;
 
 
