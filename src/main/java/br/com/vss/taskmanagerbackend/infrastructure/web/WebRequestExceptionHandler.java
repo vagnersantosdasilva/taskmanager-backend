@@ -1,5 +1,6 @@
 package br.com.vss.taskmanagerbackend.infrastructure.web;
 
+import br.com.vss.taskmanagerbackend.domain.task.DuplicateTaskException;
 import org.springframework.data.rest.core.RepositoryConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,4 +15,11 @@ public class WebRequestExceptionHandler {
     public RestResponseError handleException(RepositoryConstraintViolationException e){
         return RestResponseError.fromValidationError(e.getErrors());
     }
+
+    @ExceptionHandler
+    @ResponseStatus(code= HttpStatus.BAD_REQUEST)
+    public RestResponseError handleException(DuplicateTaskException e){
+        return RestResponseError.fromMessage(e.getMessage());
+    }
+
 }
