@@ -71,11 +71,11 @@ public class Task {
     public void setDone(Boolean done) {
         this.done = done;
     }
-    public AppUser getAppUser() {
+    public AppUser getAppUserID() {
         return appUser;
     }
 
-    public void setAppUser(AppUser appUser) {
+    public void setAppUserID(AppUser appUser) {
         this.appUser = appUser;
     }
 

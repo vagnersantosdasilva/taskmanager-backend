@@ -7,6 +7,8 @@ import br.com.vss.taskmanagerbackend.domain.user.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -26,14 +28,15 @@ public class InsertTestData {
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event){
         //TODO: Criptografar password
-        AppUser appUser = new AppUser("vagner","abc@123","Vagner Silva");
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        AppUser appUser = new AppUser("vagner",encoder.encode("abc@123"),"Vagner Silva");
         appUserRepository.save(appUser);
 
         LocalDate localDate = LocalDate.parse("2021-03-01");
 
         for (int i=1;i<=15;i++){
             Task task = new Task("Tarefea : "+i,localDate.plusDays(i),false);
-            task.setAppUser(appUser);
+            task.setAppUserID(appUser);
             taskRepository.save(task);
         }
     }
