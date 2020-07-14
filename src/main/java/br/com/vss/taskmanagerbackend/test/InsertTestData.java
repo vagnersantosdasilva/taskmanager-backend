@@ -30,13 +30,21 @@ public class InsertTestData {
         //TODO: Criptografar password
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         AppUser appUser = new AppUser("vagner",encoder.encode("abc@123"),"Vagner Silva");
+        AppUser appUser2 = new AppUser("simone",encoder.encode("abc@123"),"Simone Silva");
         appUserRepository.save(appUser);
+        appUserRepository.save(appUser2);
 
         LocalDate localDate = LocalDate.parse("2021-03-01");
 
-        for (int i=1;i<=15;i++){
-            Task task = new Task("Tarefa : "+i,localDate.plusDays(i),false);
+        for (int i=1;i<=3;i++){
+            Task task = new Task("Tarefa de Vagner: "+i,localDate.plusDays(i),false);
             task.setAppUser(appUser);
+            taskRepository.save(task);
+        }
+
+        for (int i=1;i<=3;i++){
+            Task task = new Task("Tarefa de Simone: "+i,localDate.plusDays(i),false);
+            task.setAppUser(appUser2);
             taskRepository.save(task);
         }
     }
