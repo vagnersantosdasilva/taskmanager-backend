@@ -19,5 +19,5 @@ public interface TaskRepository  extends PagingAndSortingRepository<Task,Integer
 
     @Override
     @Query("SELECT t FROM Task t WHERE t.id=?1 and t.appUser.username=?#{principal} ")
-    Optional<Task> findById(Integer integer);
+    Optional<Task> findById(Integer integer); 
 }
