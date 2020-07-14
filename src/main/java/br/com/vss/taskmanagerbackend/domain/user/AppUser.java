@@ -1,5 +1,7 @@
 package br.com.vss.taskmanagerbackend.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,6 +19,7 @@ public class AppUser {
     @NotEmpty(message = "O nome de usuário é obrigatório")
     private String username;
 
+    @JsonIgnore
     @NotEmpty(message = "A senha é obrigatória")
     private String password;
 

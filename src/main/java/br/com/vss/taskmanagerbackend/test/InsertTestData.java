@@ -35,8 +35,8 @@ public class InsertTestData {
         LocalDate localDate = LocalDate.parse("2021-03-01");
 
         for (int i=1;i<=15;i++){
-            Task task = new Task("Tarefea : "+i,localDate.plusDays(i),false);
-            task.setAppUserID(appUser);
+            Task task = new Task("Tarefa : "+i,localDate.plusDays(i),false);
+            task.setAppUser(appUser);
             taskRepository.save(task);
         }
     }

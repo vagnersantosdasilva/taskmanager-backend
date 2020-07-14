@@ -1,6 +1,7 @@
 package br.com.vss.taskmanagerbackend.domain.task;
 
 import br.com.vss.taskmanagerbackend.domain.user.AppUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
+@EntityListeners(TaskListener.class)
 public class Task {
 
     @Id
@@ -28,7 +30,8 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name="app_user_id")
-    @NotNull(message ="O usuário da tarefa é obrigatório")
+    //@NotNull(message ="O usuário da tarefa é obrigatório")
+    @JsonIgnore
     private AppUser appUser;
 
 
@@ -71,11 +74,11 @@ public class Task {
     public void setDone(Boolean done) {
         this.done = done;
     }
-    public AppUser getAppUserID() {
+    public AppUser getAppUser() {
         return appUser;
     }
 
-    public void setAppUserID(AppUser appUser) {
+    public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
     }
 
