@@ -29,8 +29,8 @@ public class Task {
     private Boolean done =false;
 
     @ManyToOne
-    @JoinColumn(name="app_user_id")
-    //@NotNull(message ="O usuário da tarefa é obrigatório")
+    @JoinColumn(name="app_user")
+    @NotNull(message ="O usuário da tarefa é obrigatório")
     @JsonIgnore
     private AppUser appUser;
 

@@ -42,7 +42,7 @@ public class InsertTestData {
             taskRepository.save(task);
         }
 
-        for (int i=1;i<=3;i++){
+        for (int i=4;i<=7;i++){
             Task task = new Task("Tarefa de Simone: "+i,localDate.plusDays(i),false);
             task.setAppUser(appUser2);
             taskRepository.save(task);

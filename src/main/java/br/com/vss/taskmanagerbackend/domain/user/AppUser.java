@@ -19,7 +19,7 @@ public class AppUser {
     @NotEmpty(message = "O nome de usuário é obrigatório")
     private String username;
 
-    @JsonIgnore
+
     @NotEmpty(message = "A senha é obrigatória")
     private String password;
 
