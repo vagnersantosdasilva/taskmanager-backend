@@ -10,6 +10,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+
 @Entity
 @EntityListeners(TaskListener.class)
 public class Task {
@@ -24,22 +25,22 @@ public class Task {
 
     @NotNull(message="A data da tarefa é obrigatória")
     @FutureOrPresent(message="A data da tarefa não pode ser no passado")
-    private LocalDate whenToDO;
+    private LocalDate whenToDo;
 
     private Boolean done =false;
 
     @ManyToOne
     @JoinColumn(name="app_user")
-    @NotNull(message ="O usuário da tarefa é obrigatório")
+    //@NotNull(message ="O usuário da tarefa é obrigatório")
     @JsonIgnore
     private AppUser appUser;
 
 
     public Task(){}
 
-    public Task(String description, LocalDate whenToDO, Boolean done) {
+    public Task(String description, LocalDate whenToDo, Boolean done) {
         this.description = description;
-        this.whenToDO = whenToDO;
+        this.whenToDo = whenToDo;
         this.done = done;
     }
 
@@ -59,12 +60,12 @@ public class Task {
         this.description = description;
     }
 
-    public LocalDate getWhenToDO() {
-        return whenToDO;
+    public LocalDate getWhenToDo() {
+        return whenToDo;
     }
 
-    public void setWhenToDO(LocalDate whenToDO) {
-        this.whenToDO = whenToDO;
+    public void setWhenToDo(LocalDate whenToDo) {
+        this.whenToDo = whenToDo;
     }
 
     public Boolean getDone() {
